@@ -12,6 +12,31 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
+	<beans:bean id="sampleInter" 
+	class="org.kidding.interceptor.SampleInterceptor">
+	</beans:bean>
+	
+	<beans:bean id="loginInter" 
+	class="org.kidding.interceptor.AfterLoginInterceptor">
+	</beans:bean>
+	
+	<beans:bean id="checkInter" 
+	class="org.kidding.interceptor.CheckLoginInterceptor">
+	</beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<!-- 필터 설정 -->
+			<mapping path="/uploadAjax"/>
+			<beans:ref bean="checkInter"/>
+		</interceptor>
+		<interceptor>
+			<!-- 필터 설정 -->
+			<mapping path="/login"/>
+			<beans:ref bean="loginInter"/>
+		</interceptor>
+	</interceptors>
+	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 

@@ -13,5 +13,4 @@ public class UploadDTO {
 	private String thumbName;
 	private String ext;
 	
-	
 }
